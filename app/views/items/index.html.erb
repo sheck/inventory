@@ -1,0 +1,12 @@
+<%= form_for Item.new do |f| %>
+  <%= f.label :name, "Item name" %>
+  <%= f.text_field :name %>
+  <%= f.label :description, "Item description" %>
+  <%= f.text_area :description %>
+  <%= f.submit "Add item" %>
+<% end %>
+
+<% @items.each do |item| %>
+  <%= item.name %>
+  <%= item.description %>
+<% end %>
