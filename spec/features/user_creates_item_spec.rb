@@ -2,11 +2,8 @@ require 'rails_helper'
 
 feature "User creates item" do
   scenario "successfully" do
-    user = User.create(email: "user@example.com", password: "password")
-    visit root_path
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    click_button "Sign in"
+    user = FactoryGirl.create(:user)
+    visit root_path(as: user)
 
     fill_in "Item name", with: "Stair car"
     fill_in "Item description", with: "It's a car with stairs"
