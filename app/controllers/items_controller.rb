@@ -2,11 +2,11 @@ class ItemsController < ApplicationController
   before_action :require_login
 
   def index
-    @items = Item.all
+    @items = current_user.items
   end
 
   def create
-    Item.create params.require(:item).permit(:name, :description)
+    current_user.items.create params.require(:item).permit(:name, :description)
     redirect_to items_path
   end
 end
