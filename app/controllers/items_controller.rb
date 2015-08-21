@@ -7,6 +7,6 @@ class ItemsController < ApplicationController
 
   def create
     current_user.items.create params.require(:item).permit(:name, :description)
-    redirect_to items_path
+    redirect_to items_path, notice: 'Item was successfully added'
   end
 end
