@@ -39,13 +39,17 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div id="flash">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-  </div>
+  <div class="container">
 
-<%= yield %>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+  </div>
 
 </body>
 </html>
