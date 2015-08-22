@@ -3,8 +3,7 @@ require 'rails_helper'
 feature "User creates item" do
 
   scenario "successfully" do
-    user = FactoryGirl.create(:user)
-    visit root_path(as: user)
+    visit items_path(as: create(:user))
 
     fill_in "Item name", with: "Stair car"
     fill_in "Item description", with: "It's a car with stairs"
@@ -15,8 +14,8 @@ feature "User creates item" do
   end
   
   scenario "that only they can see" do
-    user = FactoryGirl.create(:user)
-    user2 = FactoryGirl.create(:user, email: "user2@example.com")
+    user = create(:user)
+    user2 = create(:user, email: "user2@example.com")
 
     user2.items.create(name: "Muscle shirt")
     visit root_path(as: user)
