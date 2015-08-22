@@ -10,7 +10,6 @@ feature "User creates item" do
     fill_in "Item description", with: "It's a car with stairs"
     click_on "Add item"
 
-    expect(find("#flash")).to have_content "successfully added"
     expect(page).to have_content "Stair car"
     expect(page).to have_content "It's a car with stairs"
   end
