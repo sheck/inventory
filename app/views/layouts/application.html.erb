@@ -8,12 +8,36 @@
 </head>
 <body>
 
-  <% if signed_in? %>
-    Signed in as: <%= current_user.email %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
-  <% end %>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <!-- <button type="button" class="navbar&#45;toggle collapsed" data&#45;toggle="collapse" data&#45;target="#bs&#45;example&#45;navbar&#45;collapse&#45;1" aria&#45;expanded="false"> -->
+        <!--   <span class="sr&#45;only">Toggle navigation</span> -->
+        <!--   <span class="icon&#45;bar"></span> -->
+        <!--   <span class="icon&#45;bar"></span> -->
+        <!--   <span class="icon&#45;bar"></span> -->
+        <!-- </button> -->
+        <a class="navbar-brand" href="#"><i class="fa fa-cubes"></i></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="<%= "active" if controller_name == "items" %>"><%= link_to "Items", items_path %></li>
+          <%#  TODO Change to actual path %>
+          <li class="<%= "active" if controller_name == "lists" %>"><%= link_to "Lists", root_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
+            <li><%= link_to current_user.email, sign_out_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign in', sign_in_path %></li>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
   <div id="flash">
     <% flash.each do |key, value| %>
