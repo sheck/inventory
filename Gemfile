@@ -36,6 +36,8 @@ gem 'clearance'
 
 gem 'bootstrap-sass'
 
+gem 'simple_form'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-fontawesome', '4.1.0'
 end
