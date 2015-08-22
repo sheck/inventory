@@ -3,14 +3,9 @@
 
   <p><%= t(".description") %></p>
 
-  <%= form_for :password, url: passwords_path do |form| %>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
-    </div>
+  <%= simple_form_for :password, url: passwords_path do |form| %>
+    <%= form.input :email %>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+    <%= form.button :submit %>
   <% end %>
 </div>
