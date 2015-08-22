@@ -1,12 +1,36 @@
-<%= form_for Item.new do |f| %>
-  <%= f.label :name, "Item name" %>
-  <%= f.text_field :name %>
-  <%= f.label :description, "Item description" %>
-  <%= f.text_area :description %>
-  <%= f.submit "Add item" %>
+<%= simple_form_for Item.new do |f| %>
+  <div class="row">
+    <div class="col-xs-10">
+      <%= f.input :name, placeholder: "Enter new item name...",
+                  label_html: { class: 'sr-only' }, autofocus: true %>
+      <%= f.input :description, placeholder: "Enter optional description...",
+                  label_html: { class: 'sr-only' },
+                  input_html: { class: 'invisi-field' }  %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.button :submit, "+", title: "Add item", class: "btn-block" %>
+    </div>
+  </div>
 <% end %>
 
-<% @items.each do |item| %>
-  <%= item.name %>
-  <%= item.description %>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Delete</th>
+      <th>Add to list</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td>
+          <strong><%= item.name %></strong><br>
+          <%= item.description %>
+        </td>
+        <td class="small-col"></td>
+        <td class="small-col"></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

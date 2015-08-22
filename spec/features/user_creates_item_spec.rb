@@ -5,8 +5,8 @@ feature "User creates item" do
   scenario "successfully" do
     visit items_path(as: create(:user))
 
-    fill_in "Item name", with: "Stair car"
-    fill_in "Item description", with: "It's a car with stairs"
+    fill_in "Name", with: "Stair car"
+    fill_in "Description", with: "It's a car with stairs"
     click_on "Add item"
 
     expect(page).to have_content "Stair car"
@@ -18,7 +18,7 @@ feature "User creates item" do
     user2 = create(:user, email: "user2@example.com")
 
     user2.items.create(name: "Muscle shirt")
-    visit root_path(as: user)
+    visit items_path(as: user)
 
     expect(page).to_not have_content "Muscle shirt"
   end

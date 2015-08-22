@@ -18,16 +18,20 @@
 @import "bootstrap/variables";
 
 $grid-float-breakpoint: $screen-xs-min;
+$grid-gutter-width: 15px;
+$container-tablet:             (720px + ($grid-gutter-width * 2));
+$container-desktop:            (940px + ($grid-gutter-width * 2));
+$container-large-desktop:      (1140px + ($grid-gutter-width * 2));
 
 @import "bootstrap";
 
+.container {
+  max-width: 40em;
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
 #clearance {
-  &.sign-in,
-  &.sign-up {
-    max-width: 40em;
-    margin-left: auto;
-    margin-right: auto;
-  }
   input[type=submit] {
     margin-bottom: $grid-gutter-width;
   }
@@ -39,6 +43,21 @@ $grid-float-breakpoint: $screen-xs-min;
       padding-right: 5px;
     }
   }
+}
+
+.invisi-field {
+  border: none;
+  box-shadow: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  resize: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.small-col {
+  width: $grid-gutter-width*4;
 }
 
 @import "*";
