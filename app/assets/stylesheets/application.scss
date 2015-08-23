@@ -60,4 +60,16 @@ $container-large-desktop:      (1140px + ($grid-gutter-width * 2));
   width: $grid-gutter-width*4;
 }
 
+.item-name {
+  margin-top: 0;
+}
+
+.item-actions {
+  margin-top: $grid-gutter-width*2;
+  > a {
+    display: inline-block;
+    padding: $line-height-computed 0;
+  }
+}
+
 @import "*";

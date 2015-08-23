@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :require_login
-  before_action :find_users_items, only: :index
+  before_action :set_users_items, only: :index
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @item = current_user.items.new
@@ -11,17 +12,35 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path, flash: { success:  'Item was successfully added' }
     else
-      find_users_items
+      set_users_items
       render :index
+    end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: 'Item was successfully updated.'
+    else
+      render :edit
     end
   end
 
 private
 
-  def find_users_items
-    @items = current_user.items
+  def set_item
+    @item = Item.where(user: current_user).find(params[:id])
   end
-  
+
+  def set_users_items
+    @items = Item.where(user: current_user) 
+  end
+
   def item_params
     params.require(:item).permit(:name, :description)
   end

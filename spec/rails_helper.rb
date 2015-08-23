@@ -9,6 +9,7 @@ require 'rspec/rails'
 
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'clearance/rspec'
 
 Capybara.javascript_driver = :poltergeist
 
