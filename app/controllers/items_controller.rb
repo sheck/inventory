@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :require_login
-  before_action :set_users_items, only: :index
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
+    set_users_items
     @item = current_user.items.new
   end
 
@@ -31,14 +31,19 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to items_path, notice: 'Item was successfully deleted.'
+  end
+
 private
 
   def set_item
-    @item = Item.where(user: current_user).find(params[:id])
+    @item = current_user.items.find(params[:id])
   end
 
   def set_users_items
-    @items = Item.where(user: current_user) 
+    @items = Item.where(user: current_user)
   end
 
   def item_params

@@ -24,12 +24,17 @@
   </thead>
   <tbody>
     <% @items.each do |item| %>
-      <tr>
+      <tr id="<%= dom_id(item) %>">
         <td>
           <strong><%= link_to item.name, item %></strong><br>
           <%= item.description %>
         </td>
-        <td class="small-col"></td>
+        <td class="small-col">
+          <%= link_to item, title: "Delete", method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        </td>
         <td class="small-col"></td>
       </tr>
     <% end %>
