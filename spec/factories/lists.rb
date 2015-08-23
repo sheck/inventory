@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :list do
-    name "MyString"
+    name "Working vehicles"
+    user
   end
-
 end

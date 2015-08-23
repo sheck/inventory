@@ -1,0 +1,8 @@
+<%= simple_form_for List.new do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= @lists.each do |list| %>
+  <%= link_to list.name, list %>
+<% end %>
