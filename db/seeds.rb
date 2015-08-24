@@ -7,5 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user = User.create(email: 'user@example.com', password: 'password')
-Item.create(name: "Stair car", description: "It's a car with stairs", user: user)
+item = Item.create(name: "Stair car", description: "It's a car with stairs", user: user)
+list = List.create(name: "Working vehicles", user: user)
+ListAssignment.create(item: item, list: list)
 
