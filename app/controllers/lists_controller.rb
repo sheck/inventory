@@ -20,4 +20,9 @@ class ListsController < ApplicationController
       render :edit
     end
   end
+  def destroy
+    @list = current_user.lists.find(params[:id])
+    @list.destroy
+    redirect_to lists_path, notice: 'List was successfully deleted.'
+  end
 end

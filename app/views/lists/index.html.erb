@@ -4,5 +4,8 @@
 <% end %>
 
 <%= @lists.each do |list| %>
-  <%= link_to list.name, list %>
+  <div id="<%= dom_id list %>">
+    <%= link_to list.name, list %>
+    <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 <% end %>
