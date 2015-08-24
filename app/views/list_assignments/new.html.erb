@@ -1,0 +1,3 @@
+<% @lists.each do |list| %>
+  <%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id } %>
+<% end %>

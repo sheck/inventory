@@ -34,6 +34,7 @@
               data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
             <i class="fa fa-times"></i>
           <% end %>
+          <%= link_to "Add to list", new_item_list_assignment_path(item) %>
         </td>
         <td class="small-col"></td>
       </tr>

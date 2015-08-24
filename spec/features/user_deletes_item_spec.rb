@@ -9,7 +9,7 @@ feature "User deletes item" do
   end
   scenario "successfully from the item page" do
     click_on @item.name
-    
+
     click_on "Delete"
 
     expect(page).to have_content "successfully deleted"

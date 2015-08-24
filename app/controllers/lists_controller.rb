@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   end
 
   def show
+    @items = @list.items
+    @other_items = current_user.items
   end
 
   def edit

@@ -2,3 +2,30 @@
 
 <%= link_to "Edit list name", edit_list_path(@list) %>
 <%= link_to "Delete list", @list, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% @items.each do |item| %>
+  <%= item.name %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Add to list</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @other_items.each do |item| %>
+      <tr id="<%= dom_id(item) %>">
+        <td>
+          <strong><%= link_to item.name, item %></strong><br>
+          <%= item.description %>
+        </td>
+        <td class="small-col">
+          <%= button_to "Add to list", item_list_assignments_path(item),
+            params: { list_id: @list.id } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

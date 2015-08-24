@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :lists
   root 'items#index'
-  resources :items
+  resources :lists
+  resources :items do
+    resources :list_assignments, only: [:create, :new]
+  end
+  resources :list_assignments, only: [:destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
