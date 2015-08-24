@@ -1,28 +1,41 @@
 class ListsController < ApplicationController
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
+
   def index
     @lists = current_user.lists
   end
+
   def create
-    @list = current_user.lists.create params.require(:list).permit(:name)
+    @list = current_user.lists.create list_params
     redirect_to @list
   end
+
   def show
-    @list = current_user.lists.find(params[:id])
   end
+
   def edit
-    @list = current_user.lists.find(params[:id])
   end
+
   def update
-    @list = current_user.lists.find(params[:id])
-    if @list.update(params.require(:list).permit(:name))
+    if @list.update(list_params)
       redirect_to @list
     else
       render :edit
     end
   end
+
   def destroy
-    @list = current_user.lists.find(params[:id])
     @list.destroy
     redirect_to lists_path, notice: 'List was successfully deleted.'
+  end
+
+  private
+
+  def set_list
+    @list = current_user.lists.find(params[:id])
+  end
+
+  def list_params
+    params.require(:list).permit(:name)
   end
 end
