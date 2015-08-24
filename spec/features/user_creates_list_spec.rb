@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "User creates list" do
-  scenario "successfully" do
+  scenario "successfully from lists page" do
     visit root_path(as: create(:user))
     click_on "Lists"
 
@@ -11,6 +11,9 @@ feature "User creates list" do
     expect(page).to have_content "Working vehicles"
     expect_page_to_be_list_show
   end
+  scenario "unsuccessfully from lists page"
+  scenario "successfully after clicking 'add to list' on item"
+  scenario "unsuccessfully after clicking 'add to list' on item"
 end
 
 def expect_page_to_be_list_show
