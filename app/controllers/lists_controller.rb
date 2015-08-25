@@ -12,7 +12,7 @@ class ListsController < ApplicationController
 
   def show
     @items = @list.items
-    @other_items = current_user.items
+    @other_items = current_user.items.where.not(id: @list.items.pluck(:id))
   end
 
   def edit
