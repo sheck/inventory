@@ -17,13 +17,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap/variables";
 
-$grid-float-breakpoint: $screen-xs-min;
+$grid-float-breakpoint: 320px;
 $grid-gutter-width: 15px;
 $container-tablet:             (720px + ($grid-gutter-width * 2));
 $container-desktop:            (940px + ($grid-gutter-width * 2));
 $container-large-desktop:      (1140px + ($grid-gutter-width * 2));
 
 @import "bootstrap";
+
+.navbar {
+  font-size: 90%;
+}
 
 .container {
   max-width: 40em;
