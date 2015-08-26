@@ -1,3 +1,11 @@
-<% @lists.each do |list| %>
-  <%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id } %>
+<% unless @lists.empty? %>
+  <% @lists.each do |list| %>
+    <%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id }, class: "btn btn-default btn-block" %>
+  <% end %>
+<% else %>
+  <h4 class="text-center">You have no lists currently. Create your first list:</h4>
+  <%= simple_form_for List.new do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit %>
+  <% end %>
 <% end %>

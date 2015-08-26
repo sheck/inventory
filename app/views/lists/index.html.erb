@@ -1,11 +1,21 @@
+
 <%= simple_form_for List.new do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="col-xs-10">
+      <%= f.input :name, placeholder: "Enter new list name...",
+                  label_html: { class: 'sr-only' } %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.button :submit, "+", title: "Create List", class: "btn-block" %>
+    </div>
+  </div>
 <% end %>
 
-<%= @lists.each do |list| %>
-  <div id="<%= dom_id list %>">
-    <%= link_to list.name, list %>
-    <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+<p>&nbsp;</p>
+
+<% @lists.each do |list| %>
+  <%= link_to list, class: "btn btn-default btn-block" do %>
+    <%= list.name %> <span class="badge"><%= list.items.count %></span>
+  <% end %>
 <% end %>

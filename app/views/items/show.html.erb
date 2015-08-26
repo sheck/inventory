@@ -1,10 +1,10 @@
-<ol class="breadcrumb">
+<!-- <ol class="breadcrumb">
   <li><%= link_to 'items', items_path %></li>
   <li class="active"><%= @item.name.downcase %></li>
-</ol>
+</ol> -->
 
 <small class="text-muted">Name</small>
-<h2 class="item-name"><%= @item.name %></h2>
+<h1 class="item-name"><%= @item.name %></h1>
 <% if @item.description? %>
   <small class="text-muted">Description</small>
   <p class="lead"><%= @item.description %></p>

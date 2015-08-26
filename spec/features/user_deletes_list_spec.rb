@@ -15,12 +15,4 @@ feature "User deletes list" do
     expect(page).to have_content "successfully deleted"
     expect(page).to_not have_content @list.name
   end
-  scenario "successfully from the list index" do
-    within "##{dom_id(@list)}" do
-      click_on "Delete"
-    end
-
-    expect(page).to have_content "successfully deleted"
-    expect(page).to_not have_content @list.name
-  end
 end
