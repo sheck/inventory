@@ -10,7 +10,7 @@ class ListAssignmentsController < ApplicationController
     redirect_to @list
   end
   def destroy
-    list_assignment = ListAssignment.find(params[:id])
+    list_assignment = current_user.list_assignments.find(params[:id])
     @list = list_assignment.list
     list_assignment.destroy
     redirect_to @list

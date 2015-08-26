@@ -19,10 +19,18 @@ describe ListAssignmentsController do
       # expect(assigns(:lists)).to include(list3)
     end
   end
-  describe "POST #create" do
-    it "only assigns items to lists that belong to current user"
-  end
   describe "DELETE #destroy" do
-    it "only deletes if assignment belongs to user"
+    it "only deletes if assignment belongs to user" do
+      user1 = create(:user)
+      user2 = create(:user)
+      item = create(:item, user: user1)
+      list = create(:list, user: user1)
+      list_assignment = create(:list_assignment, item: item, list: list)
+      sign_in_as(user2)
+
+      expect {
+        delete :destroy, { id: list_assignment.id }
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
