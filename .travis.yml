@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: phAlCF9Y1qQnilClPEyuZJYHGzX1WuxxyADfaVOIYxGxK3eIjpWnhUX2dgXVEjbLSkmKbvfeBNND/eXyeO+JOYSF0Tdq+4ZQccqnkQ8HhdWPwcsaVIiVQjktUuLB5hHfq5YR0k5EfqLmBsjX+6n1luJfJjlCuJp28zMjQa/h89Ux9wY2FiPsSbq3zaFd/GMB8qfCVZhy9sjvJvy0eHJTHzzrsIbH2DJ9zIT6UB+g0KFM3JaPSR+My4+XKDABUzawEEP4QcWv7USkBhsh/Yqr1pUTxGFBCvWewUV8BpLYHuGa0BM7TWbnsVWS9hF58EEd9xRlWoR3v2ohEUh51ryd17GwwiqmLxW+3SV13SXHmNtR7QN+ElwJ8/+L7fINQgvIBSiNYBRHAIWb9M9ay7BjbklMuTtRnopX6ragG8BKuQcPmMDcK9hbNVTZleqJCeOeTWuX4dMKMv008Fpzp+8qEoM4yxrX0+FW+9g0/+SUXu25aLglBNRGjcR7DgzKs6Wevi3ynQScU1VxrxSBUaF5as0bhaxaqRIRYbCYzs5fPUUlrMU9UvcLvG9e9X60swGDtAT4X8kVr41jevjSwEjMfRDOMhGhAueBNvNZ8ksliUFH6vx09NsLRT/op14Ytq9z6EHmGCE0/rFPWDXveAaP09BRfJA8G5x1rhDg+NiIklo=
+  app: sheck-inventory
+  on:
+    repo: sheck/inventory
