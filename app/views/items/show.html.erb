@@ -26,12 +26,9 @@
   <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 
-<!-- <hr> -->
-<!--  -->
-<!-- <h4 class="text&#45;center">Lists this item is on</h4> -->
-<!-- <p> -->
-<!--   <a class="btn btn&#45;default btn&#45;block clearfix" href="#"> -->
-<!--     <span class="pull&#45;left">Project name</span> -->
-<!--     <span class="pull&#45;right badge">2</span> -->
-<!--   </a> -->
-<!-- </p> -->
+<hr>
+
+<h4 class="text-center">Lists this item is on</h4>
+<% @item.lists.each do |list| %>
+<%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id }, class: "btn btn-default btn-block" %>
+<% end %>

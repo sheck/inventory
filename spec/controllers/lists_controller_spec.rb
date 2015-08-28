@@ -17,4 +17,11 @@ describe ListsController do
     end
   end
 
+  describe "GET #index" do
+    it "does not display the list from list.new" do
+      sign_in
+      get :index
+      expect(assigns(:lists).size).to eq(assigns(:lists).count)
+    end
+  end
 end

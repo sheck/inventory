@@ -47,8 +47,7 @@ feature "User manages lists:" do
 
   context "User creates list" do
     scenario "successfully from lists page" do
-      visit root_path(as: create(:user))
-      click_on "Lists"
+      visit lists_path(as: create(:user))
 
       fill_in "Name", with: "Working vehicles"
       click_on "Create List"
@@ -57,11 +56,15 @@ feature "User manages lists:" do
       expect_page_to_be_list_show
     end
 
-    scenario "unsuccessfully from lists page"
+    scenario "unsuccessfully from lists page" do
+      visit lists_path(as: create(:user))
 
-    scenario "successfully after clicking 'add to list' on item"
+      fill_in "Name", with: ""
+      click_on "Create List"
 
-    scenario "unsuccessfully after clicking 'add to list' on item"
+      expect(page).to have_content "can't be blank"
+      expect(page).to_not have_content "Working vehicles"
+    end
   end
 
   context "User deletes list" do
@@ -146,7 +149,16 @@ feature "User manages lists:" do
       expect { visit item_path @list }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    scenario "by clicking on list from item show"
+    scenario "by clicking on list from item show" do
+      @item = create(:item, user: @user)
+      create(:list_assignment, item: @item, list: @list)
+      visit item_path(@item, as: @user)
+
+      click_on @list.name
+
+      expect(page).to have_content @list.name
+      expect_page_to_be_list_show
+    end
   end
 
 end

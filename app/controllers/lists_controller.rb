@@ -2,12 +2,18 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = current_user.lists
+    set_users_lists
+    @list = current_user.lists.new
   end
 
   def create
-    @list = current_user.lists.create list_params
-    redirect_to @list
+    @list = current_user.lists.new list_params
+    if @list.save
+      redirect_to @list, flash: { success:  'List was successfully added' }
+    else
+      set_users_lists
+      render :index
+    end
   end
 
   def show
@@ -35,6 +41,10 @@ class ListsController < ApplicationController
 
   def set_list
     @list = current_user.lists.find(params[:id])
+  end
+
+  def set_users_lists
+    @lists = List.where(user: current_user)
   end
 
   def list_params

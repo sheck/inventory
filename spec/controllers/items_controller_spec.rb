@@ -18,7 +18,7 @@ describe ItemsController do
       sign_in_as(user2)
 
       expect {
-        delete :destroy, {:id => item.to_param} 
+        delete :destroy, {:id => item.to_param}
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
