@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new item_params
     if @item.save
-      redirect_to items_path, flash: { success:  'Item was successfully added' }
+      redirect_to :back, flash: { success:  'Item was successfully added' }
     else
       set_users_items
       render :index
@@ -47,7 +47,7 @@ private
   end
 
   def item_params
-    params.require(:item).permit(:name, :description)
+    params.require(:item).permit(:name, :description, list_assignments_attributes: [:list_id])
   end
 
 end

@@ -33,6 +33,19 @@ feature "User manages items:" do
 
       expect(page).to_not have_content "Muscle shirt"
     end
+    scenario "from the list page " do
+      @user = create(:user)
+      @list = create(:list, user: @user)
+      visit list_path(@list, as: @user)
+
+      fill_in "Item name", with: "Stair car"
+      click_on "Create item and add to list"
+
+      # save_and_open_page
+      list_items = find(".list-items")
+      expect(list_items).to have_content "Stair car"
+      expect(page).to have_content @list.name
+    end
   end
 
   context "Edits item" do
