@@ -18,9 +18,9 @@ class ListsController < ApplicationController
 
   def show
     @other_items = current_user.items.where.not(id: @list.items.pluck(:id))
+    @items = @list.items
     @item = Item.new
     @item.list_assignments.build(list: @list)
-    @items = @list.items
   end
 
   def edit

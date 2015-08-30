@@ -4,4 +4,8 @@ class List < ActiveRecord::Base
   has_many :items, through: :list_assignments
 
   validates_presence_of :name, :user
+
+  def add_item(item)
+    ListAssignment.create(item: item, list: self)
+  end
 end
