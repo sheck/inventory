@@ -9,6 +9,7 @@ feature "User manages lists:" do
       @list = create(:list, name: "Working vehicles", user: @user)
       visit root_path(as: @user)
     end
+
     scenario "from item index" do
       within "##{dom_id(@item)}" do
         click_on "Add to list"
@@ -74,6 +75,7 @@ feature "User manages lists:" do
       visit root_path(as: user)
       click_on "Lists"
     end
+
     scenario "successfully from the list page" do
       click_on @list.name
       click_on "Delete"
@@ -92,12 +94,14 @@ feature "User manages lists:" do
       click_on @list.name
       click_on "Edit list name"
     end
+
     scenario "sucessfully" do
       fill_in "Name", with: "This is the new list name"
       click_on "Update List"
 
       expect(page).to have_content "This is the new list name"
     end
+
     scenario "unsuccessfully" do
       fill_in "Name", with: ""
       click_on "Update List"

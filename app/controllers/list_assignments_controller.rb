@@ -3,6 +3,7 @@ class ListAssignmentsController < ApplicationController
   def new
     @item = current_user.items.find(params[:item_id])
     @lists = current_user.lists.where.not(id: @item.lists.pluck(:id))
+    @current_lists = @item.lists
   end
 
   def create

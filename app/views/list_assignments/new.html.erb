@@ -1,11 +1,25 @@
-<% unless @lists.empty? %>
+<% if @lists.any? %>
+  <h3 class="text-center">Select a list</h3>
+  <p>&nbsp;</p>
   <% @lists.each do |list| %>
     <%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id }, class: "btn btn-default btn-block" %>
   <% end %>
-<% else %>
+  <% unless @current_lists.empty? %>
+    <p>&nbsp;</p>
+    <hr>
+    <p>&nbsp;</p>
+  <% end %>
+<% elsif @current_lists.empty? %>
   <h4 class="text-center">You have no lists currently. Create your first list:</h4>
   <%= simple_form_for List.new do |f| %>
     <%= f.input :name %>
     <%= f.button :submit %>
+  <% end %>
+<% end %>
+
+<% unless @current_lists.empty? %>
+  <h4 class="text-center">Lists this item is already on</h4>
+  <% @current_lists.each do |list| %>
+    <%= button_to list.name, item_list_assignments_path(@item), params: { list_id: list.id }, class: "btn btn-default btn-block" %>
   <% end %>
 <% end %>
