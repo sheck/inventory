@@ -18,6 +18,8 @@ end
 gem 'clearance'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk', '~> 1.6'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-fontawesome', '4.1.0'
