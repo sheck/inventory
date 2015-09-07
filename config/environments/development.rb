@@ -45,4 +45,14 @@ Rails.application.configure do
   # Add Rack::LiveReload to the bottom of the middleware stack with the
   # default options.
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
+  # Config paperclip to use S3 instead of local file storage
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 end
