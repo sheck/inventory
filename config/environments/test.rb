@@ -43,4 +43,7 @@ Rails.application.configure do
   # For clearance
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.middleware.use Clearance::BackDoor
+
+  # Don't save images in public folder when testing
+  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 end

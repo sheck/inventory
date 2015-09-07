@@ -58,4 +58,9 @@ RSpec.configure do |config|
 
   # Include FactoryGirl so we can use 'create' instead of 'FactoryGirl.create'
   config.include FactoryGirl::Syntax::Methods
+
+  # Delete paperclip images after test
+  config.after(:suite) do
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end
 end
