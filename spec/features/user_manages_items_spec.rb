@@ -3,23 +3,40 @@ include ActionView::RecordIdentifier
 
 feature "User manages items:" do
   context "Creates item" do
-    scenario "successfully" do
+    scenario "with an image" do
       visit_page_as_user
 
       fill_in "Name", with: "Stair car"
       fill_in "Description", with: "It's a car with stairs"
-      click_on "Add item"
+      attach_file "Photo", Rails.root.join('spec', 'support', 'stair_car.jpg')
+      click_on "Save"
 
+      expect(current_url).to eq(items_url)
       expect(page).to have_content "successfully added"
       expect(page).to have_content "Stair car"
       expect(page).to have_content "It's a car with stairs"
+      expect(page).to have_xpath("//img[contains(@src, 'stair_car.jpg')]")
+    end
+
+    scenario "without an image" do
+      visit_page_as_user
+
+      fill_in "Name", with: "Stair car"
+      fill_in "Description", with: "It's a car with stairs"
+      click_on "Save"
+
+      expect(current_url).to eq(items_url)
+      expect(page).to have_content "successfully added"
+      expect(page).to have_content "Stair car"
+      expect(page).to have_content "It's a car with stairs"
+      expect(page).to_not have_xpath("//img")
     end
 
     scenario "unsuccessfully" do
       visit_page_as_user
 
       fill_in "Name", with: ""
-      click_on "Add item"
+      click_on "Save"
 
       expect(page).to have_content "can't be blank"
     end
@@ -33,6 +50,7 @@ feature "User manages items:" do
 
       expect(page).to_not have_content "Muscle shirt"
     end
+
     scenario "from the list page " do
       @user = create(:user)
       @list = create(:list, user: @user)
@@ -41,7 +59,7 @@ feature "User manages items:" do
       fill_in "Item name", with: "Stair car"
       click_on "Create item and add to list"
 
-      # save_and_open_page
+      expect(current_url).to eq(list_url @list)
       list_items = find(".list-items")
       expect(list_items).to have_content "Stair car"
       expect(page).to have_content @list.name
@@ -101,6 +119,7 @@ end
 
 def visit_page_as_user
   visit root_path(as: create(:user))
+  click_on "Add Item"
 end
 
 def create_item_and_user

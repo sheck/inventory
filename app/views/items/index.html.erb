@@ -1,18 +1,4 @@
-<%= simple_form_for @item do |f| %>
-  <%= f.error_notification %>
-  <div class="row">
-    <div class="col-xs-10">
-      <%= f.input :name, placeholder: "Enter new item name...",
-                  label_html: { class: 'sr-only' }, autofocus: true %>
-      <%= f.input :description, placeholder: "Enter optional description...",
-                  label_html: { class: 'sr-only' },
-                  input_html: { class: 'invisi-field' }  %>
-    </div>
-    <div class="col-xs-2">
-      <%= f.button :submit, "+", title: "Add item", class: "btn-block" %>
-    </div>
-  </div>
-<% end %>
+<%= link_to "Add Item", new_item_path %>
 
 <table class="table">
   <thead>
@@ -28,6 +14,7 @@
         <td>
           <strong><%= link_to item.name, item %></strong><br>
           <%= item.description %>
+          <%= image_tag item.photo.url if item.photo.exists? %>
         </td>
         <td class="small-col">
           <%= link_to item, title: "Delete", method: :delete,
