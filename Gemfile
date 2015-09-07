@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rack-livereload'
 
   gem 'launchy'
+  gem 'figaro'
 end
 
 group :test do
