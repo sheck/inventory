@@ -9,6 +9,7 @@
   <small class="text-muted">Description</small>
   <p class="lead"><%= @item.description %></p>
 <% end %>
+<%= image_tag @item.photo.url if @item.photo.exists? %>
 
 <div class="item-actions">
   <div class="row">
