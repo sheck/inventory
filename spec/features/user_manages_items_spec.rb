@@ -9,7 +9,7 @@ feature "User manages items:" do
       fill_in "Name", with: "Stair car"
       fill_in "Description", with: "It's a car with stairs"
       attach_file "Photo", Rails.root.join('spec', 'support', 'stair_car.jpg')
-      click_on "Save"
+      click_on "Create Item"
 
       expect(current_url).to eq(items_url)
       expect(page).to have_content "successfully added"
@@ -23,7 +23,7 @@ feature "User manages items:" do
 
       fill_in "Name", with: "Stair car"
       fill_in "Description", with: "It's a car with stairs"
-      click_on "Save"
+      click_on "Create Item"
 
       expect(current_url).to eq(items_url)
       expect(page).to have_content "successfully added"
@@ -36,7 +36,7 @@ feature "User manages items:" do
       visit_page_as_user
 
       fill_in "Name", with: ""
-      click_on "Save"
+      click_on "Create Item"
 
       expect(page).to have_content "can't be blank"
     end
@@ -77,10 +77,12 @@ feature "User manages items:" do
     scenario "successfully" do
       fill_in "Name", with: "New name"
       fill_in "Description", with: "New description"
+      attach_file "Photo", Rails.root.join('spec', 'support', 'stair_car.jpg')
       click_on "Update Item"
 
       expect(page).to have_text "New name"
       expect(page).to have_text "New description"
+      expect(page).to have_xpath("//img[contains(@src, 'stair_car.jpg')]")
     end
 
     scenario "unsuccessfully" do

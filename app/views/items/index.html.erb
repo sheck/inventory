@@ -1,28 +1,30 @@
-<%= link_to "Add Item", new_item_path %>
+<%= link_to new_item_path, class: "btn btn-default xs-block" do %>
+  <i class="fa fa-plus"></i> Add Item
+<% end %>
 
 <table class="table">
   <thead>
     <tr>
+      <th class="hidden-xs"><span class="sr-only">Photo</span></th>
       <th>Item</th>
-      <th>Delete</th>
-      <th>Add to list</th>
+      <th class="right-col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |item| %>
       <tr id="<%= dom_id(item) %>">
+        <td class="photo-col hidden-xs">
+          <%= image_tag item.photo.url(:thumb) if item.photo.exists? %>
+        </td>
         <td>
           <strong><%= link_to item.name, item %></strong><br>
           <%= item.description %>
-          <%= image_tag item.photo.url if item.photo.exists? %>
         </td>
-        <td class="small-col">
+        <td class="small-col right-col">
           <%= link_to item, title: "Delete", method: :delete,
               data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
             <i class="fa fa-times"></i>
           <% end %>
-        </td>
-        <td class="small-col">
           <%= link_to new_item_list_assignment_path(item), title: "Add to list",
               class: "btn btn-default" do %>
             <i class="fa fa-plus"></i>
