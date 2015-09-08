@@ -67,6 +67,27 @@ img {
   }
 }
 
+.caret-toggle {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 2em;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  &:before {
+    content: "\f0d8";
+  }
+  &.collapsed:before {
+    content: "\f0d7";
+  }
+}
+
 .small-col {
   width: $grid-gutter-width*7;
 }
