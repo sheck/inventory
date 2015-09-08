@@ -5,24 +5,8 @@
     data: { confirm: 'Are you sure?' } %>
 
 <p>&nbsp;</p>
-<%= simple_form_for @item do |f| %>
-  <%= f.error_notification %>
-  <%= f.hidden_field :return_to, value: list_path(@list.id) %>
-  <div class="row">
-    <div class="col-xs-10">
-      <%= f.input :name, label: "Item name", placeholder: "Enter new item name...",
-                  label_html: { class: 'sr-only' }, autofocus: true %>
-      <%= f.input :description, placeholder: "Enter optional description...",
-                  label_html: { class: 'sr-only' },
-                  input_html: { class: 'invisi-field' }  %>
-    </div>
-    <div class="col-xs-2">
-      <%= f.button :submit, "+", title: "Create item and add to list", class: "btn-block" %>
-    </div>
-    <%= f.simple_fields_for(:list_assignments) do |la| %>
-      <%= la.hidden_field :list_id, value: @list.id %>
-    <% end %>
-  </div>
+<%= link_to new_item_path(list_id: @list.id), class: "btn btn-default xs-block" do %>
+  <i class="fa fa-plus"></i> Add Item
 <% end %>
 <p>&nbsp;</p>
 

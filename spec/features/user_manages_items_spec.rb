@@ -55,8 +55,9 @@ feature "User manages items:" do
       @user = create(:user)
       @list = create(:list, user: @user)
       visit list_path(@list, as: @user)
+      click_on "Add Item"
 
-      fill_in "Item name", with: "Stair car"
+      fill_in "Name", with: "Stair car"
       click_on "Create item and add to list"
 
       expect(current_url).to eq(list_url @list)

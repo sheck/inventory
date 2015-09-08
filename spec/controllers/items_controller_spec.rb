@@ -10,6 +10,19 @@ describe ItemsController do
     end
   end
 
+  describe "POST #create" do
+    it "only creates item and list assignment if list belongs to user" do
+      user1 = create(:user)
+      user2 = create(:user)
+      list = create(:list, user: user1)
+      sign_in_as(user2)
+
+      expect {
+        post :create, item: attributes_for(:item, user: user2, list_assignments_attributes: {"0"=>{"list_id"=>list.id}})
+      }.to_not change(ListAssignment, :count)
+    end
+  end
+
   describe "DELETE #destroy" do
     it "only deletes if the item belongs to the user" do
       user = create(:user)
@@ -18,7 +31,7 @@ describe ItemsController do
       sign_in_as(user2)
 
       expect {
-        delete :destroy, { id: item.to_param }
+        delete :destroy, id: item.id
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
