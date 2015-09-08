@@ -7,13 +7,21 @@ class ItemsController < ApplicationController
     @item = current_user.items.new
   end
 
+  def new
+    @item = Item.new
+    if params[:list_id]
+      @item.list_assignments.build(list: @list)
+    end
+  end
+
   def create
     @item = current_user.items.new item_params
+    verify_list_belongs_to_user or return
     if @item.save
-      redirect_to :back, flash: { success:  'Item was successfully added' }
+      redirect_to return_to_path, flash: { success:  'Item was successfully added' }
     else
       set_users_items
-      render :index
+      render :new
     end
   end
 
@@ -47,7 +55,20 @@ private
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, list_assignments_attributes: [:list_id])
+    params.require(:item).permit(:name, :description, :photo, list_assignments_attributes: [:list_id])
+  end
+
+  def return_to_path
+    path = params.require(:item).permit(:return_to)[:return_to] 
+    path ? path : items_path
+  end
+
+  def verify_list_belongs_to_user
+    if @item.list_assignments.any? && @item.user != @item.list_assignments.first.user
+      redirect_to root_path and return
+    else
+      return true
+    end
   end
 
 end
