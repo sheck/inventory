@@ -93,21 +93,20 @@ feature "User manages items:" do
   end
 
   context "Views item" do
-    background do
-      create_item_and_user
-    end
-
     scenario "successfully" do
+      create_item_with_image_and_user
       visit root_path(as: @user)
 
       click_on @item.name
 
       expect(page).to have_content @item.name
       expect(page).to have_content @item.description
+      expect(page).to have_xpath("//img[contains(@src, '#{@item.photo_file_name}')]")
       # expect(page).to have_content lists_that_item_belongs_to
     end
 
     scenario "that does not belong to them" do
+      create_item_and_user
       user2 = create(:user, email: "user2@example.com")
       visit root_path(as: user2)
 
@@ -125,4 +124,9 @@ end
 def create_item_and_user
   @user = create(:user)
   @item = create(:item, user: @user)
+end
+
+def create_item_with_image_and_user
+  @user = create(:user)
+  @item = create(:item, :with_image, user: @user)
 end
