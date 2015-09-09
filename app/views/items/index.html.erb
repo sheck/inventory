@@ -2,32 +2,54 @@
   <i class="fa fa-plus"></i> Add Item
 <% end %>
 
-<table class="table">
+<p>
+  &nbsp;
+</p>
+
+<table class="table tablesaw-stack" data-tablesaw-mode="stack" data-tablesaw-sortable data-tablesaw-sortable-switch>
   <thead>
     <tr>
-      <th class="hidden-xs"><span class="sr-only">Photo</span></th>
-      <th>Item</th>
-      <th class="right-col">Actions</th>
+      <th data-tablesaw-sortable-col data-tablesaw-sortable-default-col>
+        Item
+      </th>
+      <th data-tablesaw-sortable-col>
+        Photo
+      </th>
+      <th data-tablesaw-sortable-col data-sortable-numeric>
+        Last updated
+      </th>
+      <th data-tablesaw-sortable-col data-sortable-numeric>
+        Created at
+      </th>
+      <th>
+        <span class="sr-only">Actions</span>
+      </th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |item| %>
       <tr id="<%= dom_id(item) %>">
-        <td class="photo-col hidden-xs">
-          <%= image_tag item.photo.url(:thumb) if item.photo.exists? %>
-        </td>
-        <td>
+        <td class="row-index">
           <strong><%= link_to item.name, item %></strong><br>
           <%= item.description %>
         </td>
-        <td class="small-col right-col">
+        <td>
+          <%= image_tag item.photo.url(:thumb) if item.photo.exists? %>
+        </td>
+        <td>
+          <small class="text-muted"><%= item.updated_at.to_formatted_s(:short) %></small>
+        </td>
+        <td>
+          <small class="text-muted"><%= item.created_at.to_formatted_s(:short) %></small>
+        </td>
+        <td>
           <%= link_to item, title: "Delete", method: :delete,
-              data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
-            <i class="fa fa-times"></i>
+              data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" do %>
+            <i class="fa fa-times"></i><span class="visible-xs-inline"> Delete</span>
           <% end %>
           <%= link_to new_item_list_assignment_path(item), title: "Add to list",
-              class: "btn btn-default" do %>
-            <i class="fa fa-plus"></i>
+              class: "btn btn-sm btn-default" do %>
+            <i class="fa fa-plus"></i><span class="visible-xs-inline"> Add to list</span>
           <% end %>
         </td>
       </tr>

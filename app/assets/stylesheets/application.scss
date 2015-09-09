@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require fontawesome
+ *= require tablesaw
  *= require_self
  */
 
@@ -30,9 +31,11 @@ $container-large-desktop:      (1140px + ($grid-gutter-width * 2));
 }
 
 .container {
-  // max-width: 600px;
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
+}
+.container-md {
+  max-width: 600px;
 }
 .container-sm {
   max-width: 400px;
@@ -67,11 +70,16 @@ img {
   }
 }
 
+.tablesaw-stack > tbody > tr > td {
+  border-top: none;
+}
 .small-col {
   width: $grid-gutter-width*7;
 }
-.right-col {
-  text-align: right;
+td.right-col {
+  @media (min-width: $screen-sm-min) {
+    text-align: right;
+  }
 }
 .photo-col {
   width: 100px;
@@ -93,6 +101,13 @@ img {
 .xs-block {
   @media (max-width: $screen-xs-max) {
     display: block;
+  }
+}
+
+.row-index {
+  // doubling up to override
+  .tablesaw-cell-label.tablesaw-cell-label {
+    display: none;
   }
 }
 

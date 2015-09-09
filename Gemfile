@@ -23,6 +23,7 @@ gem 'aws-sdk', '~> 1.6'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-fontawesome', '4.1.0'
+  gem 'rails-assets-tablesaw'
 end
 
 group :development, :test do
