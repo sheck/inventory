@@ -2,32 +2,35 @@
   <i class="fa fa-plus"></i> Add Item
 <% end %>
 
-<p>&nbsp;</p>
-
-<div class="items">
-  <% @items.each do |item| %>
-    <div class="item" id="<%= dom_id(item) %>">
-      <a class="pull-right collapsed caret-toggle" href="#<%= dom_id(item) %>_collapse" data-toggle="collapse">
-      </a>
-      <strong><%= link_to item.name, item %></strong><br>
-      <%= item.description %>
-      <div class="collapse" id="<%= dom_id(item) %>_collapse">
-        <div class="row">
-          <div class="col-xs-6">
-            <%= image_tag item.photo.url(:thumb) if item.photo.exists? %>
-          </div>
-          <div class="col-xs-6">
-            <%= link_to item, title: "Delete", method: :delete,
-                data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
-              <i class="fa fa-times"></i> Delete
-            <% end %>
-            <%= link_to new_item_list_assignment_path(item), title: "Add to list",
-                class: "btn btn-default" do %>
-              <i class="fa fa-plus"></i> Add to list
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="hidden-xs"><span class="sr-only">Photo</span></th>
+      <th>Item</th>
+      <th class="right-col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr id="<%= dom_id(item) %>">
+        <td class="photo-col hidden-xs">
+          <%= image_tag item.photo.url(:thumb) if item.photo.exists? %>
+        </td>
+        <td>
+          <strong><%= link_to item.name, item %></strong><br>
+          <%= item.description %>
+        </td>
+        <td class="small-col right-col">
+          <%= link_to item, title: "Delete", method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+          <%= link_to new_item_list_assignment_path(item), title: "Add to list",
+              class: "btn btn-default" do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
