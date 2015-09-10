@@ -9,16 +9,19 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    if params[:list_id]
-      @item.list_assignments.build(list: @list)
-    end
+    @lists = current_user.lists
   end
 
   def create
     @item = current_user.items.new item_params
     verify_list_belongs_to_user or return
     if @item.save
-      redirect_to return_to_path, flash: { success:  'Item was successfully added' }
+      if params[:item][:quick_entry_mode] == "1"
+        redirect_to new_item_path(lists: @item.lists.pluck(:id)), flash:
+          { success:  "#{@item.name} was successfully added" }
+      else
+        redirect_to return_to_path, flash: { success:  'Item was successfully added' }
+      end
     else
       set_users_items
       render :new
@@ -55,7 +58,7 @@ private
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :photo, list_assignments_attributes: [:list_id])
+    params.require(:item).permit(:name, :description, :photo, list_ids: [])
   end
 
   def return_to_path
@@ -64,8 +67,10 @@ private
   end
 
   def verify_list_belongs_to_user
-    if @item.list_assignments.any? && @item.user != @item.list_assignments.first.user
-      redirect_to root_path and return
+    if @item.lists.any?
+      @item.lists.each do |list|
+        redirect_to root_path and return if list.user != current_user
+      end 
     else
       return true
     end

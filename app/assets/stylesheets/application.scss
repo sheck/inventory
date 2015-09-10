@@ -101,6 +101,7 @@ td.right-col {
 .xs-block {
   @media (max-width: $screen-xs-max) {
     display: block;
+    width: 100%;
   }
 }
 

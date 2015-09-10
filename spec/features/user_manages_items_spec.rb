@@ -58,7 +58,7 @@ feature "User manages items:" do
       click_on "Add Item"
 
       fill_in "Name", with: "Stair car"
-      click_on "Create item and add to list"
+      click_on "Create Item"
 
       expect(current_url).to eq(list_url @list)
       list_items = find(".list-items")

@@ -5,7 +5,7 @@
     data: { confirm: 'Are you sure?' } %>
 
 <p>&nbsp;</p>
-<%= link_to new_item_path(list_id: @list.id), class: "btn btn-default xs-block" do %>
+<%= link_to new_item_path(lists: @list.id, return_to: list_path(@list)), class: "btn btn-default xs-block" do %>
   <i class="fa fa-plus"></i> Add Item
 <% end %>
 <p>&nbsp;</p>

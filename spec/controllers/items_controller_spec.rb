@@ -18,7 +18,18 @@ describe ItemsController do
       sign_in_as(user2)
 
       expect {
-        post :create, item: attributes_for(:item, user: user2, list_assignments_attributes: {"0"=>{"list_id"=>list.id}})
+        post :create, item: attributes_for(:item, user: user2, list_ids: list.id)
+      }.to_not change(ListAssignment, :count)
+    end
+    it "only creates item and list assignment if list belongs to user" do
+      user1 = create(:user)
+      user2 = create(:user)
+      list1 = create(:list, user: user1)
+      list2 = create(:list, user: user2)
+      sign_in_as(user2)
+
+      expect {
+        post :create, item: attributes_for(:item, user: user2, list_ids: [list2.id, list1.id])
       }.to_not change(ListAssignment, :count)
     end
   end

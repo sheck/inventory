@@ -1,1 +1,8 @@
+<% content_for :container_classes, "container-md" %>
 <%= render "form" %>
+<p>&nbsp;</p>
+<% if params[:list_id] %>
+  <%= link_to "Back", list_path(params[:list_id]) %>
+<% else %>
+  <%= link_to "Back", items_path %>
+<% end %>
