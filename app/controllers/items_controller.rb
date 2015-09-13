@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     set_users_items
-    @item = current_user.items.new
   end
 
   def new
@@ -54,7 +53,7 @@ private
   end
 
   def set_users_items
-    @items = Item.where(user: current_user)
+    @items = Item.where(user: current_user).order(created_at: :desc)
   end
 
   def item_params
