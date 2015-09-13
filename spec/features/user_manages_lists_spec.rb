@@ -31,19 +31,6 @@ feature "User manages lists:" do
       expect(page).to have_content "Stair car"
       expect_page_to_be_list_show
     end
-
-    scenario "from list page" do
-      click_on "Lists"
-      click_on @list.name
-
-      within "##{dom_id(@item)}" do
-        click_on "Add to list"
-      end
-
-      expect(page).to have_content "Working vehicles"
-      expect(page).to have_content "Stair car"
-      expect_page_to_be_list_show
-    end
   end
 
   context "User creates list" do

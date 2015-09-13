@@ -27,38 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% unless @other_items.empty? %>
-  <p>&nbsp;</p>
-
-  <hr>
-
-  <p>&nbsp;</p>
-
-  <h3 class="text-center">Other items not on this list</h3>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Add to list</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @other_items.each do |item| %>
-        <tr id="<%= dom_id(item) %>">
-          <td>
-            <strong><%= link_to item.name, item %></strong><br>
-            <%= item.description %>
-          </td>
-          <td class="small-col">
-            <%= button_to item_list_assignments_path(item),
-              params: { list_id: @list.id }, title: "Add to list", class: "btn btn-default" do %>
-              <i class="fa fa-plus"></i>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
