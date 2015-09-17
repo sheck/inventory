@@ -13,7 +13,7 @@
     <% end %>
   </div>
   <div class="col-sm-6">
-    <%= image_tag @item.photo.url if @item.photo.exists? %>
+    <%= image_tag @item.photo.url, class: "item-photo" if @item.photo.exists? %>
   </div>
 </div>
 
@@ -34,9 +34,13 @@
   <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 
-<hr>
+<% if @item.lists.any? %>
+  <hr>
 
-<h4 class="text-center">Lists this item is on</h4>
-<% @item.lists.each do |list| %>
-  <%= link_to list.name, list, class: "btn btn-default btn-block" %>
+  <h4 class="text-center">Lists this item is on</h4>
+  <div class="lists-with-item">
+    <% @item.lists.each do |list| %>
+      <%= link_to list.name, list, class: "btn btn-default btn-block" %>
+    <% end %>
+  </div>
 <% end %>

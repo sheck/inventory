@@ -48,6 +48,7 @@
           <li class="<%= "active" if controller_name == "items" %>"><%= link_to "Items", items_path %></li>
           <%#  TODO Change to actual path %>
           <li class="<%= "active" if controller_name == "lists" %>"><%= link_to "Lists", lists_path %></li>
+          <li class="<%= "active" if controller_name == "scans" %>"><%= link_to "Scan", new_scan_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
