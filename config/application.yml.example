@@ -1,0 +1,9 @@
+AWS_ACCESS_KEY_ID: [your_info_here]
+AWS_SECRET_ACCESS_KEY: [your_info_here]
+AMAZON_ASSOCIATE_TAG: [your_info_here]
+
+development:
+  S3_BUCKET_NAME: [your_info_here]
+
+production:
+  S3_BUCKET_NAME: [your_info_here]
