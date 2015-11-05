@@ -1,3 +1,11 @@
+machine:
+  environment:
+    ZBAR_LIB: vendor/lib/libzbar.so
+dependencies:
+  cache_directories:
+    - vendor/lib
+  pre:
+    - bash ./setup-ci.sh
 deployment:
   production:
     branch: master
