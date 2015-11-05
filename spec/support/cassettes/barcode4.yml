@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ecs.amazonaws.com/onca/xml?AWSAccessKeyId=<AWS_ACCESS_KEY_ID>&AssociateTag=<AMAZON_ASSOCIATE_TAG>&Keywords=0778988980774&Operation=ItemSearch&ResponseGroup=Medium&SearchIndex=All&Service=AWSECommerceService&Signature=JXFn1/4dqDqKmwd3L0D9F7xQ7iSyxfKbVEOZpKBswkg=&Timestamp=2015-11-05T19:26:05Z&Version=2013-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ecs.amazonaws.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 05 Nov 2015 19:26:05 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" ?><ItemSearchResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01"><OperationRequest><HTTPHeaders><Header
+        Name="UserAgent" Value="Ruby"></Header></HTTPHeaders><RequestId>de60033e-1576-4b50-9354-d855e611e527</RequestId><Arguments><Argument
+        Name="AWSAccessKeyId" Value="<AWS_ACCESS_KEY_ID>"></Argument><Argument Name="AssociateTag"
+        Value="<AMAZON_ASSOCIATE_TAG>"></Argument><Argument Name="Keywords" Value="0778988980774"></Argument><Argument
+        Name="Operation" Value="ItemSearch"></Argument><Argument Name="ResponseGroup"
+        Value="Medium"></Argument><Argument Name="SearchIndex" Value="All"></Argument><Argument
+        Name="Service" Value="AWSECommerceService"></Argument><Argument Name="Timestamp"
+        Value="2015-11-05T19:26:05Z"></Argument><Argument Name="Version" Value="2013-08-01"></Argument><Argument
+        Name="Signature" Value="JXFn1/4dqDqKmwd3L0D9F7xQ7iSyxfKbVEOZpKBswkg="></Argument></Arguments><RequestProcessingTime>0.1015770000000000</RequestProcessingTime></OperationRequest><Items><Request><IsValid>True</IsValid><ItemSearchRequest><Keywords>0778988980774</Keywords><ResponseGroup>Medium</ResponseGroup><SearchIndex>All</SearchIndex></ItemSearchRequest><Errors><Error><Code>AWS.ECommerceService.NoExactMatches</Code><Message>We
+        did not find any matches for your request.</Message></Error></Errors></Request><TotalResults>0</TotalResults><TotalPages>0</TotalPages><MoreSearchResultsUrl>http://www.amazon.com/gp/redirect.html?linkCode=xm2&amp;SubscriptionId=<AWS_ACCESS_KEY_ID>&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fsearch%3Fkeywords%3D0778988980774%26url%3Dsearch-alias%253Daws-amazon-aps&amp;tag=<AMAZON_ASSOCIATE_TAG>&amp;creative=386001&amp;camp=2025</MoreSearchResultsUrl></Items></ItemSearchResponse>
+    http_version: 
+  recorded_at: Thu, 05 Nov 2015 19:26:05 GMT
+recorded_with: VCR 3.0.0

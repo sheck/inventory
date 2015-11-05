@@ -40,6 +40,8 @@ group :development, :test do
   gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'webmock'
+  gem 'vcr'
+  gem 'timecop'
 
   gem 'guard-rspec', require: false
   gem 'guard-livereload', '~> 2.4', require: false

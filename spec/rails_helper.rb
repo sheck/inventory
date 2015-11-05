@@ -12,7 +12,6 @@ require 'capybara/poltergeist'
 require 'clearance/rspec'
 
 require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true)
 
 Capybara.javascript_driver = :poltergeist
 
@@ -64,6 +63,17 @@ RSpec.configure do |config|
 
   # Delete paperclip images after test
   config.after(:suite) do
-      FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end
+
+  # Setup VCR
+  config.before(:each) do
+    VCR.configure do |c|
+      c.cassette_library_dir = 'spec/support/cassettes'
+      c.hook_into :webmock
+      c.filter_sensitive_data('<AWS_ACCESS_KEY_ID>') { ENV["AWS_ACCESS_KEY_ID"] }
+      c.filter_sensitive_data('<AMAZON_ASSOCIATE_TAG>') { ENV["AMAZON_ASSOCIATE_TAG"] }
+      c.filter_sensitive_data('<AWS_SECRET_ACCESS_KEY>') { ENV["AWS_SECRET_ACCESS_KEY"] }
+    end
   end
 end
