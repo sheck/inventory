@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'factory_girl_rails'
+  gem 'webmock'
 
   gem 'guard-rspec', require: false
   gem 'guard-livereload', '~> 2.4', require: false
