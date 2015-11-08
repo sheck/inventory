@@ -1,3 +1,4 @@
+<% content_for :container_classes, "container-md" %>
 <% if @scan.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@scan.errors.count, "error") %> prohibited this scan from being saved:</h2>
@@ -9,10 +10,22 @@
     </ul>
   </div>
 <% end %>
+
 <%= simple_form_for @scan, url: scans_path do |f| %>
+  <h1>Scan Barcode</h1>
+  <p>
+    Scan the barcode of an item you'd like to add. We'll look it up, and try to fill in the title and photo for you.
+  </p>
+  <hr>
   <%= f.input :barcode_image, as: :file %>
-  <%= f.collection_check_boxes :list_ids, @lists, :id, :name, checked: params[:lists] %>
-  <%= f.button :submit, "Scan Barcode" %>
-  <%# <% byebug %>
-  <%= f.input :quick_entry_mode, as: :boolean, input_html: { checked: @quick_entry_mode }, wrapper_html: { class: "text-muted" } %>
+  <% if @lists.any? %>
+    <hr>
+    <h4>Add to list</h4>
+    <%= f.collection_check_boxes :list_ids, @lists, :id, :name, checked: params[:lists] %>
+  <% end %>
+  <hr>
+  <p>
+    <%= f.button :submit, "Scan Barcode" %>
+    <%= f.input :quick_entry_mode, as: :boolean, input_html: { checked: @quick_entry_mode }, wrapper_html: { class: "text-muted" } %>
+  </p>
 <% end %>
