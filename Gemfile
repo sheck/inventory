@@ -36,12 +36,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
-  gem 'capybara'
-  gem 'poltergeist'
-  gem 'factory_girl_rails'
-  gem 'webmock'
-  gem 'vcr'
-  gem 'timecop'
 
   gem 'guard-rspec', require: false
   gem 'guard-livereload', '~> 2.4', require: false
@@ -53,4 +47,10 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'factory_girl_rails'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'timecop'
 end
