@@ -6,6 +6,7 @@ This app uses
  - Rspec, capybara & factory girl for testing
  - Clearance for authorization
  - Bootstrap for front end framework
+ - zbar for barcode scanning directly to Inventory
 
 ### Running Locally
 1. `bin/setup` (ignore the stuff about dropbox)
