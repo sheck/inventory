@@ -1,4 +1,6 @@
 class ScansController < ApplicationController
+  before_action :require_login
+  
   def new
     @scan = Scan.new
     @lists = current_user.lists

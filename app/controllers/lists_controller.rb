@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_action :require_login
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
