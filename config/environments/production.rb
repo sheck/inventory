@@ -77,6 +77,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # For clearance
+  config.action_mailer.default_url_options = { host: 'sheck-inventory.herokuapp.com' }
+
   # Config paperclip to use S3 instead of local file storage
   config.paperclip_defaults = {
     :storage => :s3,
