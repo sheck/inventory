@@ -6,7 +6,7 @@ describe Scan do
       VCR.use_cassette("barcode") do |cassette|
         Timecop.freeze(cassette.originally_recorded_at || Time.now) do
           barcode = File.open("spec/support/barcode.jpg", mode: "rb")
-          scan = Scan.new(barcode_image: barcode, list_ids: [], user: create(:user))
+          scan = Scan.new(barcode_image: barcode, user: create(:user))
 
           scan.save
 

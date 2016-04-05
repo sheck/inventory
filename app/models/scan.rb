@@ -48,7 +48,7 @@ class Scan
   end
 
   def lists
-    list_ids.reject(&:empty?)
+    list_ids.reject(&:empty?) if list_ids
   end
 
   def query_item
