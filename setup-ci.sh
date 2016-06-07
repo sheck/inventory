@@ -3,7 +3,7 @@ set -e
 BUILD_DIR=$PWD
 
 if [ ! -e vendor/lib/libzbar.so ]; then
-  zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
+  zbar_url="http://downloads.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
   curl $zbar_url -s -o - | tar jxf - -C $BUILD_DIR
 
   cd $BUILD_DIR/zbar-0.10/
