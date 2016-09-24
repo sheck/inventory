@@ -11,3 +11,7 @@ This app uses
 ### Running Locally
 1. `bin/setup` (ignore the stuff about dropbox)
 2. Rename `config/application.yml.example` to `config/application.yml` and add your own API keys
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sheck/inventory/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
