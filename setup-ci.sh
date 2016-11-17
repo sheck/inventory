@@ -3,10 +3,10 @@ set -e
 BUILD_DIR=$PWD
 
 if [ ! -e vendor/lib/libzbar.so ]; then
-  zbar_url="http://freefr.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
+  zbar_url="https://codeload.github.com/ZBar/ZBar/legacy.tar.gz/0.10"
   curl $zbar_url -s -o - | tar jxf - -C $BUILD_DIR
 
-  cd $BUILD_DIR/zbar-0.10/
+  cd $BUILD_DIR/ZBar-ZBar-325ccbb/
 
   patch -p1 <<EOF
   diff --git a/zbar/jpeg.c b/zbar/jpeg.c
@@ -38,5 +38,5 @@ EOF
   make
   make install
 
-  rm -r $BUILD_DIR/zbar-0.10
+  rm -r $BUILD_DIR/ZBar-ZBar-325ccbb
 fi
