@@ -4,7 +4,7 @@ BUILD_DIR=$PWD
 
 if [ ! -e vendor/lib/libzbar.so ]; then
   zbar_url="https://codeload.github.com/ZBar/ZBar/legacy.tar.gz/0.10"
-  curl $zbar_url -s -o - | tar jxf - -C $BUILD_DIR
+  curl $zbar_url -s -o - | tar zxf - -C $BUILD_DIR
 
   cd $BUILD_DIR/ZBar-ZBar-325ccbb/
 
